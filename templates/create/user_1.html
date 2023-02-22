@@ -1,0 +1,15 @@
+<!doctype html>
+<title>Bem vindo a {{piz_nome}}</title>
+{% if name %}
+  <h1>Hello {{ name }}!</h1>
+{% else %}
+  <h1>Insira seu dados:</h1>
+  <form action="{{url_for('form_new_user')}}" method="post">
+    <input type="email" name="email" id="email" placeholder="Email">
+    <input type="text" name="nome" id="nome" placeholder="Nome">
+    <input type="tel" name="telefone" id="telefone" placeholder="Celular">
+    <input type="password" name="password" id="password" placeholder="Senha">
+    <!-- <input type="password" name="passc" id="passc" placeholder="Confime sua senha"> -->
+    <button type="submit">Criar</button>
+  </form>
+{% endif %}

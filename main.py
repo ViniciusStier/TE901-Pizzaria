@@ -1,28 +1,29 @@
+from flask import Flask, render_template, request
+from database.Cliente import Cliente
 
-import sqlite3
-import math
-conexao = sqlite3.connect('pizzaria.db')
 
-cursor = conexao.cursor()
+app = Flask(__name__)
 
-print("Inserção de novo estudante do banco bib.db\n")
-cli_nome = input("   Nome completo: ")
-cli_phone = input("   Telefone: ")
-cli_email = input("   Email: ")
-cli_hash = "svndvlobds backp0-"
+piz_nome = "Pizzaria do seu Zé"
 
-query = """
-INSERT INTO Cliente (nome, telefone, email, hash_pass)
-VALUES (?, ?, ?, ?);
-"""
+@app.route('/')
+@app.route('/<name>')
+def index(name=None):
+    return render_template('index.html', name=name, piz_nome=piz_nome)
 
-cursor.execute(query, (cli_nome, cli_phone, cli_email, cli_hash)) # passagem do nome e email para a montagem da query
-# método executemany passa a query e uma lista de tuplas,
-# cada tupla como os dados de uma operação de insert
+@app.route('/NovoUsuario', methods=["GET", "POST"])
+def form_new_user():
+    if request.method == "POST":
+        cli = Cliente(**request.form)
+        print(cli.post())
+        cli.commit()
+    return render_template('create/user_1.html', piz_nome=piz_nome)
 
-# commit para persistir as inserções na base de dados
-conexao.commit()
-# insert, update e delete precisam do commit pois alteram a base de dados
+@app.route('/user/<id>')
+def get_user(id=1):
+    cli = Cliente(id=id)
+    print(cli)
+    return render_template('index.html', name=cli.nome, piz_nome=piz_nome)
 
-cursor.close()
-conexao.close()
+if "__main__" == __name__:
+    app.run(debug=True)
