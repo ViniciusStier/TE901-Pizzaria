@@ -1,0 +1,14 @@
+<!doctype html>
+<title>Bem vindo a {{piz_nome}}</title>
+{% if name %}
+  <h1>Hello {{ name }}!</h1>
+{% else %}
+  <h1>Insira seu dados:</h1>
+  <form action="{{url_for('form_new_address')}}" method="post">
+    <input type="text" name="cidade" id="cidade" placeholder="Cidade">
+    <input type="text" name="bairro" id="bairro" placeholder="Bairro">
+    <input type="text" name="rua" id="rua" placeholder="Rua">
+    <input type="text" name="numero" id="numero" placeholder="Numero">
+    <button type="submit">Criar</button>
+  </form>
+{% endif %}
