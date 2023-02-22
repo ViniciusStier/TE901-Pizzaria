@@ -2,7 +2,7 @@ CREATE TABLE Cliente (
     id_cli      INTEGER PRIMARY KEY,
     nome        TEXT NOT NULL,
     telefone    TEXT NOT NULL,
-    email       TEXT NOT NULL,
+    email       TEXT NOT NULL UNIQUE,
     hash_pass   TEXT NOT NULL
 );
 
