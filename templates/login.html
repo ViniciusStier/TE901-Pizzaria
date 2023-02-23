@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login - {{piz_nome}}</title>
+  </head>
+  <body>
+    <h1>Faça login</h1>
+    <form action="/login" method="post">
+      <label for="email">Email:</label>
+      <input type="email" name="email" id="email" required><br><br>
+      <label for="password">Senha:</label>
+      <input type="password" name="password" id="password" required><br><br>
+      <button type="submit">Entrar</button>
+    </form>
+    <p>Não tem uma conta? <a href="{{url_for('form_new_user')}}">Cadastre-se aqui</a>.</p>
+  </body>
+</html>

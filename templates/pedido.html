@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pedido - {{piz_nome}}</title>
+    <style>
+      body {
+        align-items: center;
+        display: block;
+        background-color: #8bd67d94;
+        font-size: 20px;
+      }
+      h1{
+        margin-top: 10px;
+      }
+      form {
+        display: grid;
+      }
+      .beb{
+        font-size: 0.9em;
+      }
+      label.beb{
+        width: 150px;
+        box-sizing: border-box;
+        display: inline-block;
+      }
+      input.beb{
+        width: 40px;
+        border: None;
+        background-color: #ffffff45;
+        border-radius: 5px;
+        border-color: #8bd67d79;
+        text-align: end;
+      }
+      select{
+          background-color: #ffffff45;
+          border-radius: 5px;
+          border-color: #8bd67d79;
+          font-size: 0.7em;
+      }
+      fieldset{
+        border: None;
+        padding: 13px;
+      }
+      legend{
+        font-weight: bolder;
+      }
+      div.all {
+        width: 700px;
+        align-content: center;
+        margin: auto;
+        margin-top: 45px;
+        background-color: #ffffff45;
+        padding: 15px;
+        border-radius: 20px;
+      }
+      #plus {
+        margin: auto;
+        display: block;
+        text-align: center;
+        background-color: #00000013;
+        font-size: 30px;
+        font-weight: bolder;
+        vertical-align: middle;
+        width: 35px;
+        height: 35px; 
+        border-radius: 100%;
+        margin-top: 15px;
+        user-select: none;
+        cursor: pointer;
+      }
+      div.bebida{
+        justify-content: space-between;
+        display: flex;
+      }
+      button{
+        width: 50%;
+        font-size: 1.1em;
+        text-align: center;
+        margin: auto;
+        border-radius: 10px;
+        border-color: #00000021;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="all">
+
+      <h1>Faça seu Pedido</h1>
+      <form action="/login" method="post">
+          <fieldset>
+            <legend>Pizzas</legend>
+            <div class="pizza" id="pizza_1">
+
+              <label for="tamanho">Tamanho da pizza:</label>
+              <select id="tamanho" name="tamanho">
+                  {% for tamanho in tam %}
+                  <option value="{tamanho[0]}">{{tamanho[1]}}</option>
+                  {% endfor %}
+              </select></br>
+              <label for="borda">Borda da pizza:</label>
+              <select id="borda" name="borda">
+                  {% for borda in bordas %}
+                  <option value="{borda[0]}">{{borda[1]}}</option>
+                  {% endfor %}
+              </select></br>
+              <label for="email">Sabor da pizza:</label>
+              <select id="sabor" name="sabor">
+                  {% for sabor in sabores %}
+                  <option value="{sabor[0]}">{{sabor[2]}}: {{sabor[3]}}</option>
+                  {% endfor %}
+              </select>
+            </div>
+            <div id="plus">+</div>
+          </fieldset>
+          <br/>
+          <fieldset>
+              <legend>Bebidas Alcoolicas:</legend>
+              {% for bebida in bebidas if bebida[2] %}
+              <div class="bebida">
+                <label class="beb" for="beb_{{bebida[0]}}" >{{bebida[1]}} {{bebida[4]}}:</label>
+                <input class="beb" type="number" name="beb_{{bebida[0]}}" alt="{{bebida[3]}}" id="beb_{{bebida[0]}}" value=0 min=0 required>
+              </div>
+              {% endfor %}
+          </fieldset>
+          <fieldset>
+              <legend>Bebidas Não Alcoolicas:</legend>
+              {% for bebida in bebidas if not bebida[2]%}
+              <div class="bebida">
+                <label class="beb" for="beb_{{bebida[0]}}" >{{bebida[1]}} {{bebida[4]}}:</label>
+                <input class="beb" type="number" name="beb_{{bebida[0]}}" alt="{{bebida[3]}}" id="beb_{{bebida[0]}}" value=0 min=0 required>
+              </div>
+              {% endfor %}
+          </fieldset>
+          <button type="submit">Pedir</button>
+      </form>
+    </div>
+  </body>
+</html>
