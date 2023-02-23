@@ -58,8 +58,10 @@ def get_user(id=1):
     nome = cli.get(id)[2]
     return render_template('index.html', name=nome, piz_nome=piz_nome)
 
-@app.route('/pedido')
+@app.route('/pedido', methods=["GET", "POST"])
 def pedido(id=1):
+    if request.method == 'POST':
+        print(request.form)
     # cli = Cliente()
     # nome = cli.get(id)[2]
     sabores = Sabor().get_all()

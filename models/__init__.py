@@ -7,8 +7,10 @@ class Database(object):
 
     def __init__(self):
         """Initialize db class variables"""
+        sqlite3.enable_callback_tracebacks(True)
         self.connection = sqlite3.connect(Database.DB_LOCATION)
         self.cur = self.connection.cursor()
+        self.connection.set_trace_callback(self.callback)
 
     def close(self):
         """close sqlite3 connection"""
@@ -21,6 +23,10 @@ class Database(object):
     def commit(self):
         """commit changes to database"""
         self.connection.commit()
+    
+    def callback(self, stin):
+        if stin == "COMMIT":
+            print(f"New commit in {self.__class__.__name__}")
         
     def __del__(self):
         """close sqlite3 connection"""

@@ -81,36 +81,22 @@
         border-color: #00000021;
         cursor: pointer;
       }
+      .hidden{
+        display: none;
+      }
+      .pizza {
+        margin: 10px;
+      }
     </style>
   </head>
   <body>
     <div class="all">
 
       <h1>Faça seu Pedido</h1>
-      <form action="/login" method="post">
-          <fieldset>
+      <form action="{{url_for('pedido')}}" method="post">
+          <fieldset id="pizzas">
             <legend>Pizzas</legend>
-            <div class="pizza" id="pizza_1">
-
-              <label for="tamanho">Tamanho da pizza:</label>
-              <select id="tamanho" name="tamanho">
-                  {% for tamanho in tam %}
-                  <option value="{tamanho[0]}">{{tamanho[1]}}</option>
-                  {% endfor %}
-              </select></br>
-              <label for="borda">Borda da pizza:</label>
-              <select id="borda" name="borda">
-                  {% for borda in bordas %}
-                  <option value="{borda[0]}">{{borda[1]}}</option>
-                  {% endfor %}
-              </select></br>
-              <label for="email">Sabor da pizza:</label>
-              <select id="sabor" name="sabor">
-                  {% for sabor in sabores %}
-                  <option value="{sabor[0]}">{{sabor[2]}}: {{sabor[3]}}</option>
-                  {% endfor %}
-              </select>
-            </div>
+            <input type="hidden" id="pizza_num" name="num">
             <div id="plus">+</div>
           </fieldset>
           <br/>
@@ -134,6 +120,40 @@
           </fieldset>
           <button type="submit">Pedir</button>
       </form>
+
+      <div class="pizza hidden" id="example">
+        <label for="tamanho">Tamanho da pizza:</label>
+        <select class="tamanho" name="tamanho">
+            {% for tamanho in tam %}
+            <option value="{{tamanho[0]}}">{{tamanho[1]}}</option>
+            {% endfor %}
+        </select></br>
+        <label for="borda">Borda da pizza:</label>
+        <select class="borda es" name="borda">
+            {% for borda in bordas %}
+            <option value="{{borda[0]}}">{{borda[1]}}</option>
+            {% endfor %}
+        </select></br>
+        <label for="sabor1">Sabores da pizza:</label><br>
+        <select class="sabor" name="sabor1">
+            {% for sabor in sabores %}
+            <option value="{{sabor[0]}}">{{sabor[2]}}: {{sabor[3]}}</option>
+            {% endfor %}
+        </select><br>
+        <select class="sabor hidden" name="sabor2">
+          <option value="0">Nenhum</option>
+            {% for sabor in sabores %}
+            <option value="{{sabor[0]}}">{{sabor[2]}}: {{sabor[3]}}</option>
+            {% endfor %}
+        </select><br>
+        <select class="sabor hidden" name="sabor3">
+          <option value="0">Nenhum</option>
+            {% for sabor in sabores %}
+            <option value="{{sabor[0]}}">{{sabor[2]}}: {{sabor[3]}}</option>
+            {% endfor %}
+        </select>
+      </div>
     </div>
+    <script src="{{ url_for('static',filename='js/pedido.js') }}" type="text/javascript"></script>
   </body>
 </html>

@@ -3,15 +3,98 @@
   <head>
     <title>Login - {{piz_nome}}</title>
   </head>
+  <style>
+    body {
+      align-items: center;
+      display: block;
+      background-color: #8bd67d94;
+      font-size: 20px;
+    }
+    h1{
+      margin-top: 10px;
+    }
+    form {
+      display: grid;
+    }
+    .beb{
+      font-size: 0.9em;
+    }
+    label.beb{
+      width: 150px;
+      box-sizing: border-box;
+      display: inline-block;
+    }
+    input{
+      border: None;
+      background-color: #ffffff87;
+      border-radius: 5px;
+      border-color: #8bd67d79;
+      text-align: start;
+      font-size: 1em;
+      margin-bottom: 10px;
+    }
+    select{
+        background-color: #ffffff45;
+        border-radius: 5px;
+        border-color: #8bd67d79;
+        font-size: 0.7em;
+    }
+    fieldset{
+      border: None;
+      padding: 13px;
+    }
+    legend{
+      font-weight: bolder;
+    }
+    div.all {
+      width: 300px;
+      align-content: center;
+      margin: auto;
+      margin-top: 45px;
+      background-color: #ffffff45;
+      padding: 15px;
+      border-radius: 20px;
+    }
+    #plus {
+      margin: auto;
+      display: block;
+      text-align: center;
+      background-color: #00000013;
+      font-size: 30px;
+      font-weight: bolder;
+      vertical-align: middle;
+      width: 35px;
+      height: 35px; 
+      border-radius: 100%;
+      margin-top: 15px;
+      user-select: none;
+      cursor: pointer;
+    }
+    div.bebida{
+      justify-content: space-between;
+      display: flex;
+    }
+    button{
+      width: 50%;
+      font-size: 1.1em;
+      text-align: center;
+      margin: auto;
+      border-radius: 10px;
+      border-color: #00000021;
+      cursor: pointer;
+    }
+  </style>
   <body>
-    <h1>Faça login</h1>
-    <form action="/login" method="post">
-      <label for="email">Email:</label>
-      <input type="email" name="email" id="email" required><br><br>
-      <label for="password">Senha:</label>
-      <input type="password" name="password" id="password" required><br><br>
-      <button type="submit">Entrar</button>
-    </form>
-    <p>Não tem uma conta? <a href="{{url_for('form_new_user')}}">Cadastre-se aqui</a>.</p>
+    <div class="all">
+      <h1>Faça login</h1>
+      <form action="/login" method="post">
+        <!--<label for="email">Email:</label> --> 
+        <input type="email" name="email" id="email" placeholder="Email" required>
+        <!--<label for="password">Senha:</label> -->
+        <input type="password" name="password" id="password" placeholder="Senha" required>
+        <button type="submit">Entrar</button>
+      </form>
+      <p>Não tem uma conta? <a href="{{url_for('form_new_user')}}">Cadastre-se aqui</a>.</p>
+    </div>
   </body>
 </html>
